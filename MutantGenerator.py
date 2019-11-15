@@ -64,7 +64,7 @@ class MutantGenerator:
 
         with open(os.path.join(dir, "Mut" + str(num) + "_" + self.file), 'w') as f:
             for line in mut_file:
-                f.write(line + "\n")
+                f.write(line)
         return
 
     def buildOutputTextFile(self):
