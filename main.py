@@ -7,7 +7,7 @@ import os
 def main():
 
     print("No Command Line Arguments, Using Default Input file: calculator.py")
-    mutant = MutantGenerator("calculator.py")
+    MutantGenerator("calculator.py")
     os.system("python CalculatorUnitTest.py")
 
 
