@@ -40,6 +40,16 @@ class MutantGenerator:
                 i = i + 1
         return mutants_inline
 
+    def createClassName(self, mut_file, i):
+        z = 0
+        for line in mut_file:
+            if "Calculator" in line:
+                newClass = line.replace("Calculator", "Mutant" + str(i), 1)
+                return (newClass, z)
+            z = z + 1
+
+
+
     def genMutatedSourceFiles(self):
         i = 1
         line_num = 0
@@ -53,6 +63,8 @@ class MutantGenerator:
                     newLine = newLine[:mutant_loc] + item + newLine[mutant_loc+1:]
                     newLine = newLine.rstrip() + "  # Mutant inserted here, original mutant '{0}' \n".format(operator[0])
                     mutated_file[line_num] = newLine
+                    classTup = self.createClassName(mutated_file, i)
+                    mutated_file[classTup[1]] = classTup[0]
                     self.writeMutantSourceFile(mutated_file, i)
                     i = i + 1
             line_num = line_num + 1
@@ -62,9 +74,9 @@ class MutantGenerator:
         if not os.path.exists(dir):
             os.mkdir(dir)
 
-        with open(os.path.join(dir, "Mut" + str(num) + "_" + self.file), 'w') as f:
+        with open(os.path.join(dir, "Mutant" + str(num) + ".py"), 'w') as f:
             for line in mut_file:
-                f.write(line + "\n")
+                f.write(line)
         return
 
     def buildOutputTextFile(self):
