@@ -64,8 +64,6 @@ class MutantGenerator:
                     newLine = newLine[:mutant_loc] + item + newLine[mutant_loc+1:]
                     newLine = newLine.rstrip() + "  # Mutant inserted here, original mutant '{0}' \n".format(operator[0])
                     mutated_file[line_num] = newLine
-                    classTup = self.createClassName(mutated_file, i)
-                    mutated_file[classTup[1]] = classTup[0]
                     self.writeMutantSourceFile(mutated_file, i)
                     i = i + 1
             line_num = line_num + 1
