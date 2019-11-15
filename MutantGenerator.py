@@ -101,11 +101,8 @@ class MutantGenerator:
         return
 
     def writeOutputTextFile(self):
-        dir = os.path.join(os.getcwd(), "Mutant_files")
-        if not os.path.exists(dir):
-            os.mkdir(dir)
 
-        with open(os.path.join(dir, 'Mutant_Stats.txt'), 'w') as f:
+        with open("Mutant_Stats.txt", 'w') as f:
             for item in self.output:
                 f.write("%s\n" % item)
         return
