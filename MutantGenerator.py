@@ -9,7 +9,6 @@ class MutantGenerator:
         self.file = filename
         self.content = []
         self.output = []
-        self.mut_source = []
         self.mutations = ['*', '/', '+', '-']
         self.mut_dict = {'*': 0, '/': 0, '+': 0, '-': 0}
         self.getInput(filename)
@@ -23,9 +22,6 @@ class MutantGenerator:
     def getInput(self, filename):
         with open(filename) as file:
             self.content = file.readlines()
-
-    def getContent(self):
-        return self.content
 
     def getMutants(self, cur_op):
         mut_list = []
