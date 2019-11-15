@@ -1,14 +1,19 @@
 
+
 class Calculator():
 
-    def mult(self, a, b):
-        return a*b
+    def operation1(self):
+        return 1 - 3
 
-    def divide(self, a, b):
-        return a/b
+    def operation2(self):
+        result = self.operation1(self) + 10
+        return result
 
-    def add(self, a, b):
-        return a+b
+    def operation3(self):
+        result = self.operation2(self) / 8
+        return result
 
-    def sub(self, a, b):
-        return a-b
+    def operation4(self):
+        result = self.operation3(self) * 4
+        # original code returns 4
+        return result
