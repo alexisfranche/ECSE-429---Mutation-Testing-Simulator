@@ -8,13 +8,20 @@ class TestSequence(unittest.TestCase):
 
 
 def setup(test_list,dir):
-    path, dirs, files = next(os.walk("Mutant_files\\"+dir))
+    originalpath = os.path.join(os.getcwd(), "calculator.py")
+    path, dirs, files = next(os.walk(os.path.join("Mutant_files", dir)))
+    print(files)
+
+    originalspec = importlib.util.spec_from_file_location("calculator.py", originalpath)
+    original = importlib.util.module_from_spec(originalspec)
+    originalspec.loader.exec_module(original)
 
     for file in files:
         spec = importlib.util.spec_from_file_location(file, path + "/" + file)
         mutant = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mutant)
-        test_list.append([file, mutant.Calculator.operation4(mutant.Calculator), 4])
+        test_list.append([file, mutant.Calculator.operation4(mutant.Calculator),
+                          original.Calculator.operation4(original.Calculator)])
 
 
 def test_generator(a, b):
