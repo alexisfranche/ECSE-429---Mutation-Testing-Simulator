@@ -1,16 +1,18 @@
-import unittest
-import os.path
 import importlib.util
+import os.path
 import random
+import unittest
+
+from concurrencytest import ConcurrentTestSuite, fork_for_tests
 
 
 class TestSequence(unittest.TestCase):
     pass
 
 
-def setup(test_list,dir):
+def setup(test_list):
     originalpath = os.path.join(os.getcwd(), "calculator.py")
-    path, dirs, files = next(os.walk(os.path.join("Mutant_files", dir)))
+    path, dirs, files = next(os.walk("Mutant_files"))
 
     originalspec = importlib.util.spec_from_file_location("calculator.py", originalpath)
     original = importlib.util.module_from_spec(originalspec)
@@ -36,11 +38,15 @@ def test_generator(a, b):
     return test
 
 
-def execute(directory):
+def execute():
     test_list = []
-    setup(test_list, directory)
+    setup(test_list)
+    runner = unittest.TextTestRunner()
     for t in test_list:
         test_name = 'test_%s' % t[0]
         test = test_generator(t[1], t[2])
         setattr(TestSequence, test_name, test)
-    unittest.main(module=__name__)
+
+    fast = unittest.makeSuite(TestSequence, 'test')
+    concurrent_suite = ConcurrentTestSuite(fast, fork_for_tests(3))
+    runner.run(concurrent_suite)
