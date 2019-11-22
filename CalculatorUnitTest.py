@@ -27,8 +27,8 @@ def setup(test_list):
         num3 = random.randint(1, 10)
         num4 = random.randint(1, 10)
         num5 = random.randint(1, 10)
-        test_list.append([file, mutant.Calculator.use_calculator(mutant.Calculator, num1, num2, num3, num4, num5),
-                          original.Calculator.use_calculator(original.Calculator, num1, num2, num3, num4, num5)])
+        test_list.append([file, mutant.Calculator.use_calculator(mutant.Calculator, num1, num2, num3, num4, 1),
+                          original.Calculator.use_calculator(original.Calculator, num1, num2, num3, num4, 1)])
 
 
 def test_generator(a, b):
@@ -48,5 +48,6 @@ def execute():
         setattr(TestSequence, test_name, test)
 
     fast = unittest.makeSuite(TestSequence, 'test')
+    print('\nRun mutant tests across 3 processes:')
     concurrent_suite = ConcurrentTestSuite(fast, fork_for_tests(3))
     runner.run(concurrent_suite)
