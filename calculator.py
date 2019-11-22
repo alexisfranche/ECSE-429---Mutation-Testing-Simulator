@@ -2,19 +2,19 @@
 
 class Calculator():
 
-    def operation1(self, num1, num2):
+    def subtract(self, num1, num2):
         result = num1 - num2
         return result
 
-    def operation2(self, returned_num1, num3):
+    def add(self, returned_num1, num3):
         result = returned_num1 + num3
         return result
 
-    def operation3(self, returned_num2, num4):
+    def divide(self, returned_num2, num4):
         result = returned_num2 / num4
         return result
 
-    def operation4(self, returned_num3, num5):
+    def multiply(self, returned_num3, num5):
         result = returned_num3 * num5       
         return result
 
