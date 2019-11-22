@@ -11,7 +11,6 @@ class TestSequence(unittest.TestCase):
 def setup(test_list,dir):
     originalpath = os.path.join(os.getcwd(), "calculator.py")
     path, dirs, files = next(os.walk(os.path.join("Mutant_files", dir)))
-    print(files)
 
     originalspec = importlib.util.spec_from_file_location("calculator.py", originalpath)
     original = importlib.util.module_from_spec(originalspec)
@@ -21,10 +20,13 @@ def setup(test_list,dir):
         spec = importlib.util.spec_from_file_location(file, path + "/" + file)
         mutant = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mutant)
-        a = random.randint(0, 10)
-        b = random.randint(0, 10)
-        test_list.append([file, mutant.Calculator.operation4(mutant.Calculator, a, b),
-                          original.Calculator.operation4(original.Calculator, a, b)])
+        num1 = random.randint(1, 10)
+        num2 = random.randint(1, 10)
+        num3 = random.randint(1, 10)
+        num4 = random.randint(1, 10)
+        num5 = random.randint(1, 10)
+        test_list.append([file, mutant.Calculator.use_calculator(mutant.Calculator, num1, num2, num3, num4, num5),
+                          original.Calculator.use_calculator(original.Calculator, num1, num2, num3, num4, num5)])
 
 
 def test_generator(a, b):
