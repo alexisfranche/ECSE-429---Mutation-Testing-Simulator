@@ -4,7 +4,9 @@ import random
 import unittest
 
 from concurrencytest import ConcurrentTestSuite, fork_for_tests
+
 l = []
+
 
 class TestSequence(unittest.TestCase):
     pass
@@ -54,11 +56,9 @@ def execute():
         concurrent_suite = ConcurrentTestSuite(fast, fork_for_tests(3))
         output = runner.run(concurrent_suite)
 
-
     with open("output.log", 'r') as f:
         lines = f.readlines()
         i = 1
-        print(l)
         with open("results.txt", 'w') as w:
             for c in lines[0].strip():
                 if c == '.':
@@ -68,8 +68,8 @@ def execute():
                     w.write(f"\nMutant #{i} was killed")
                     print(f"Mutant #{i} was killed")
 
-                w.write(f"\nvector is {l[i-1]}\n")
-                print(f"vector is {l[i-1]}")
+                w.write(f"\nvector is {l[i - 1]}\n")
+                print(f"vector is {l[i - 1]}\n")
                 i = i + 1
 
     tot_tests = output.testsRun
@@ -78,7 +78,4 @@ def execute():
 
     with open("results.txt", "a") as w:
         w.write("\nMutant Coverage: %{0:.2f}".format(mut_cov))
-    print("\nMutant Coverage: %{0:.2f}".format(mut_cov))
-
-
-
+    print("Mutant Coverage: %{0:.2f}".format(mut_cov))
