@@ -2,18 +2,18 @@
 
 class Calculator():
 
-    def operation1(self):
-        return 1 - 3
+    def operation1(self, a, b):
+        return a - b
 
-    def operation2(self):
-        result = self.operation1(self) + 10
+    def operation2(self, a, b):
+        result = self.operation1(self, a, b) + 10
         return result
 
-    def operation3(self):
-        result = self.operation2(self) / 8
+    def operation3(self, a, b):
+        result = self.operation2(self, a, b) / 8
         return result
 
-    def operation4(self):
-        result = self.operation3(self) * 4       
+    def operation4(self, a, b):
+        result = self.operation3(self, a, b) * 4
         # original code returns 4
         return result

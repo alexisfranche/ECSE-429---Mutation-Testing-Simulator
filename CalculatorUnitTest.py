@@ -1,6 +1,7 @@
 import unittest
 import os.path
 import importlib.util
+import random
 
 
 class TestSequence(unittest.TestCase):
@@ -20,8 +21,10 @@ def setup(test_list,dir):
         spec = importlib.util.spec_from_file_location(file, path + "/" + file)
         mutant = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mutant)
-        test_list.append([file, mutant.Calculator.operation4(mutant.Calculator),
-                          original.Calculator.operation4(original.Calculator)])
+        a = random.randint(0, 10)
+        b = random.randint(0, 10)
+        test_list.append([file, mutant.Calculator.operation4(mutant.Calculator, a, b),
+                          original.Calculator.operation4(original.Calculator, a, b)])
 
 
 def test_generator(a, b):
