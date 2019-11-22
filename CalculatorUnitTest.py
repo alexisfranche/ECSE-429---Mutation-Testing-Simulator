@@ -4,7 +4,7 @@ import random
 import unittest
 
 from concurrencytest import ConcurrentTestSuite, fork_for_tests
-
+l = []
 
 class TestSequence(unittest.TestCase):
     pass
@@ -26,8 +26,9 @@ def setup(test_list):
         num2 = random.randint(1, 10)
         num3 = random.randint(1, 10)
         num4 = random.randint(1, 10)
-        test_list.append([file, mutant.Calculator.use_calculator(mutant.Calculator, num1, num2, num3, num4, 1),
-                          original.Calculator.use_calculator(original.Calculator, num1, num2, num3, num4, 1)])
+        l.append([num1, num2, num3, num4])
+        test_list.append([file, mutant.Calculator.use_calculator(mutant.Calculator, num1, num2, num3, num4),
+                          original.Calculator.use_calculator(original.Calculator, num1, num2, num3, num4)])
 
 
 def test_generator(a, b):
@@ -50,3 +51,4 @@ def execute():
     print('\nRun mutant tests across 3 processes:')
     concurrent_suite = ConcurrentTestSuite(fast, fork_for_tests(3))
     runner.run(concurrent_suite)
+    print(l)
