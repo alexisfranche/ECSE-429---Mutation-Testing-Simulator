@@ -5,7 +5,6 @@ from MutantGenerator import MutantGenerator
 
 
 def main():
-    print("No Command Line Arguments, Using Default Input file: calculator.py")
     MutantGenerator("calculator.py")
     CalculatorUnitTest.execute()
 
