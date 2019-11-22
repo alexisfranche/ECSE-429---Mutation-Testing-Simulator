@@ -1,5 +1,3 @@
-
-
 class Calculator():
 
     def subtract(self, num1, num2):
@@ -15,7 +13,7 @@ class Calculator():
         return result
 
     def multiply(self, returned_num3, num5):
-        result = returned_num3 * num5       
+        result = returned_num3 * num5
         return result
 
     def use_calculator(self, num1, num2, num3, num4, num5):
@@ -25,5 +23,3 @@ class Calculator():
         result = self.multiply(self, returned_num3, num5)
 
         return result
-
-

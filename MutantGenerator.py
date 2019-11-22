@@ -1,7 +1,9 @@
 from __future__ import print_function
+
 import os
 
-#Team
+
+# Team
 
 class MutantGenerator:
 
@@ -49,8 +51,6 @@ class MutantGenerator:
                 return (newClass, z)
             z = z + 1
 
-
-
     def genMutatedSourceFiles(self):
         i = 1
         line_num = 0
@@ -61,8 +61,9 @@ class MutantGenerator:
                     mutated_file = self.content.copy()
                     newLine = mutated_file[line_num]
                     mutant_loc = operator[2]
-                    newLine = newLine[:mutant_loc] + item + newLine[mutant_loc+1:]
-                    newLine = newLine.rstrip() + "  # Mutant inserted here, original mutant '{0}' \n".format(operator[0])
+                    newLine = newLine[:mutant_loc] + item + newLine[mutant_loc + 1:]
+                    newLine = newLine.rstrip() + "  # Mutant inserted here, original mutant '{0}' \n".format(
+                        operator[0])
                     mutated_file[line_num] = newLine
                     self.writeMutantSourceFile(mutated_file, i)
                     i = i + 1
@@ -84,7 +85,8 @@ class MutantGenerator:
             for operator in self.getAllOperators(line):
                 mutant_list = self.getMutants(operator[0])
                 for item in mutant_list:
-                    output_msg = """Mutant insertion on line: {0}\nOriginal arithmetic operator: '{1}'""".format(line_num, operator[0])
+                    output_msg = """Mutant insertion on line: {0}\nOriginal arithmetic operator: '{1}'""".format(
+                        line_num, operator[0])
                     output_msg = output_msg + """\nOperator number {0} on this line\nType of mutant inserted: {1}
                                 """.format(operator[1], item)
                     self.output.append(output_msg)

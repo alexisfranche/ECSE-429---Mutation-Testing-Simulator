@@ -26,7 +26,6 @@ def setup(test_list):
         num2 = random.randint(1, 10)
         num3 = random.randint(1, 10)
         num4 = random.randint(1, 10)
-        num5 = random.randint(1, 10)
         test_list.append([file, mutant.Calculator.use_calculator(mutant.Calculator, num1, num2, num3, num4, 1),
                           original.Calculator.use_calculator(original.Calculator, num1, num2, num3, num4, 1)])
 
