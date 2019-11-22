@@ -43,13 +43,6 @@ class MutantGenerator:
                 i = i + 1
         return mutants_inline
 
-    def createClassName(self, mut_file, i):
-        z = 0
-        for line in mut_file:
-            if "Calculator" in line:
-                newClass = line.replace("Calculator", "Mutant" + str(i), 1)
-                return (newClass, z)
-            z = z + 1
 
     def genMutatedSourceFiles(self):
         i = 1
