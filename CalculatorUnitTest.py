@@ -9,6 +9,7 @@ l = []
 
 
 class TestSequence(unittest.TestCase):
+
     pass
 
 
@@ -31,6 +32,14 @@ def setup(test_list):
         l.append([num1, num2, num3, num4])
         test_list.append([file, mutant.Calculator.use_calculator(mutant.Calculator, num1, num2, num3, num4),
                           original.Calculator.use_calculator(original.Calculator, num1, num2, num3, num4)])
+
+        try:
+            l.append([1, 1, 1, 0])
+            test_list.append([file + "1", mutant.Calculator.use_calculator(mutant.Calculator, 1, 1, 1, 0),
+                              original.Calculator.use_calculator(original.Calculator, 1, 1, 1, 0)])
+
+        except Exception:
+            test_list.append([file + "1", 0, ZeroDivisionError])
 
 
 def test_generator(a, b):
